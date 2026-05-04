@@ -5,7 +5,10 @@ string logo = @"
 █▀ █▀▀ █▀█ █▀▀ █▀▀ █▄░█   █▀ █▀█ █░█ █▄░█ █▀▄
 ▄█ █▄▄ █▀▄ ██▄ ██▄ █░▀█   ▄█ █▄█ █▄█ █░▀█ █▄▀";
 
-List<string> bands = new List<string> {"One Ok Rock", "System of a Down", "Slipknot"};
+Dictionary<string, List<int>> bands = new Dictionary<string, List<int>>();
+bands.Add("One Ok Rock", new List<int>());
+bands.Add("System of a Down", new List<int>());
+bands.Add("Linkin Park", new List<int>());
 
 void showWelcomeMessage() {
     Console.WriteLine(logo);
@@ -54,8 +57,9 @@ void registerBand() {
     string title = "Register a band";
     showPageTitle(title);
     Console.Write("What band do you want do add: ");
-    bands.Add(Console.ReadLine()!);
-    Console.WriteLine($"{bands.Last()} was registered successfully!");
+    string bandName = Console.ReadLine()!;
+    bands.Add(bandName, new List<int>());
+    Console.WriteLine($"{bandName} was registered successfully!");
     Thread.Sleep(2000);
     backToMainMenu();
 }
@@ -63,7 +67,7 @@ void registerBand() {
 void showAllBands() {
     string title = "Show all bands";
     showPageTitle(title);
-    foreach(string band in bands) {
+    foreach(string band in bands.Keys) {
         Console.WriteLine(band);
     }
     Thread.Sleep(2000);
