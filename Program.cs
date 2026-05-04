@@ -42,7 +42,7 @@ void handleOption(int option) {
             evaluateBand();
             break;
         case 4:
-            Console.WriteLine("Option selected: " + option);
+            averageEvaluationByBand();
             break;
         case 0:
             Console.WriteLine("Thanks for using Screen Sound =)" );
@@ -90,6 +90,30 @@ void evaluateBand() {
     }
     Thread.Sleep(2000);
     backToMainMenu();   
+}
+
+void averageEvaluationByBand() {
+    string title = "Average Evaluation By Band";
+    showPageTitle(title);
+
+    Console.Write("What band do you want to evaluate: ");
+    string bandName = Console.ReadLine()!;
+
+    if (bands.ContainsKey(bandName)) {
+        List<int> evaluation = bands[bandName];
+
+        if (evaluation.Count == 0) {
+            Console.WriteLine("This band has no evaluations.");
+        } else {
+            double average = evaluation.Average();
+            Console.WriteLine($"The average evaluation of {bandName} is {average}.");
+        }
+
+    } else {
+        Console.WriteLine($"Band {bandName} not found.");
+    }
+    Thread.Sleep(2000);
+    backToMainMenu();
 }
 
 void backToMainMenu() {
