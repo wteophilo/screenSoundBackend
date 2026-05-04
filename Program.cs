@@ -39,7 +39,7 @@ void handleOption(int option) {
             showAllBands();
             break;
         case 3:
-            Console.WriteLine("Option selected: " + option);
+            evaluateBand();
             break;
         case 4:
             Console.WriteLine("Option selected: " + option);
@@ -72,6 +72,24 @@ void showAllBands() {
     }
     Thread.Sleep(2000);
     backToMainMenu();
+}
+
+void evaluateBand() {
+    string title = "Evaluate a band";
+    showPageTitle(title);
+    Console.Write("What band do you want to evaluate: ");
+    string bandName = Console.ReadLine()!;
+    
+    if (bands.ContainsKey(bandName)) {
+        Console.Write("Enter your evaluation (1-10): ");
+        int evaluation = int.Parse(Console.ReadLine()!);
+        bands[bandName].Add(evaluation);
+        Console.WriteLine($"Evaluation added to {bandName}!");
+    } else {
+        Console.WriteLine($"Band {bandName} not found.");
+    }
+    Thread.Sleep(2000);
+    backToMainMenu();   
 }
 
 void backToMainMenu() {
