@@ -5,6 +5,8 @@ string logo = @"
 █▀ █▀▀ █▀█ █▀▀ █▀▀ █▄░█   █▀ █▀█ █░█ █▄░█ █▀▄
 ▄█ █▄▄ █▀▄ ██▄ ██▄ █░▀█   ▄█ █▄█ █▄█ █░▀█ █▄▀";
 
+List<string> bands = new List<string> {"One Ok Rock", "System of a Down", "Slipknot"};
+
 void showWelcomeMessage() {
     Console.WriteLine(logo);
     Console.WriteLine(welcome);
@@ -28,10 +30,10 @@ int readOption() {
 void handleOption(int option) {    
     switch(option) {
         case 1:
-            Console.WriteLine("Option selected: " + option);
+            registerBand();
             break;
         case 2:
-            Console.WriteLine("Option selected: " + option);
+            showAllBands();
             break;
         case 3:
             Console.WriteLine("Option selected: " + option);
@@ -46,6 +48,30 @@ void handleOption(int option) {
             Console.WriteLine("Invalid option");
             break;
     }
+}
+
+void registerBand() {
+    Console.Write("What band do you want do add: ");
+    bands.Add(Console.ReadLine()!);
+    Console.WriteLine($"{bands.Last()} was registered successfully!");
+    Thread.Sleep(2000);
+    backToMainMenu();
+}
+
+void showAllBands() {
+    Console.WriteLine("Here are all the bands:\n");
+    foreach(string band in bands) {
+        Console.WriteLine(band);
+    }
+    Thread.Sleep(2000);
+    backToMainMenu();
+}
+
+void backToMainMenu() {
+    Console.WriteLine("Press Enter to go back to main menu");
+    Console.ReadLine();
+    Console.Clear();
+    main();
 }
 
 void main() {
