@@ -51,6 +51,8 @@ void handleOption(int option) {
 }
 
 void registerBand() {
+    string title = "Register a band";
+    showPageTitle(title);
     Console.Write("What band do you want do add: ");
     bands.Add(Console.ReadLine()!);
     Console.WriteLine($"{bands.Last()} was registered successfully!");
@@ -59,7 +61,8 @@ void registerBand() {
 }
 
 void showAllBands() {
-    Console.WriteLine("Here are all the bands:\n");
+    string title = "Show all bands";
+    showPageTitle(title);
     foreach(string band in bands) {
         Console.WriteLine(band);
     }
@@ -72,6 +75,13 @@ void backToMainMenu() {
     Console.ReadLine();
     Console.Clear();
     main();
+}
+
+void showPageTitle(string title) {
+    string line = string.Empty.PadLeft(title.Length, '=');
+    Console.WriteLine(line);
+    Console.WriteLine(title);
+    Console.WriteLine(line + "\n");
 }
 
 void main() {
