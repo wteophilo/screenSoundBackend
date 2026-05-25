@@ -1,6 +1,6 @@
 namespace ScreenSoundBackend.Models;
 
-class Album(string name)
+internal class Album(string name)
 {
     private readonly List<Music> musics = [];
 

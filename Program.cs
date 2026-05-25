@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Linq.Expressions;
 using ScreenSoundBackend.Models;
 
 string welcome = "Welcome to Screen Sound";
@@ -9,14 +10,14 @@ string logo = @"
 
 
 Band oneOkRock = new("One Ok Rock");
-oneOkRock.AddEvaluation(10);
-oneOkRock.AddEvaluation(9);
-oneOkRock.AddEvaluation(8);
+oneOkRock.AddEvaluation(new Evaluate(10));
+oneOkRock.AddEvaluation(new Evaluate(9));
+oneOkRock.AddEvaluation(new Evaluate(8));
 
 Band linkinPark = new("Linkin Park");
-linkinPark.AddEvaluation(10);
-linkinPark.AddEvaluation(9);
-linkinPark.AddEvaluation(8);
+linkinPark.AddEvaluation(new Evaluate(10));
+linkinPark.AddEvaluation(new Evaluate(9));
+linkinPark.AddEvaluation(new Evaluate(8));
 
 Dictionary<string, Band> bands = new()
 {
@@ -133,9 +134,17 @@ void evaluateBand()
     if (bands.TryGetValue(bandName, out Band? foundedBand))
     {
         Console.Write("Enter your evaluation (1-10): ");
-        int evaluation = int.Parse(Console.ReadLine()!);
-        foundedBand.AddEvaluation(evaluation);
-        Console.WriteLine($"Evaluation added to {bandName}!");
+        string text = Console.ReadLine()!;
+        try
+        {
+            Evaluate evaluation = Evaluate.Parse(text);
+            foundedBand.AddEvaluation(evaluation);
+            Console.WriteLine($"The evaluation {evaluation.Score} was added to {foundedBand.Name}!");
+        }
+        catch (Exception ex) when (ex is FormatException or ArgumentException or OverflowException)
+        {
+            Console.WriteLine("Invalid input. Please enter a valid number between 0 and 10.");
+        }
     }
     else
     {
@@ -150,6 +159,7 @@ void averageEvaluationByBand()
     string title = "Average Evaluation By Band";
     showPageTitle(title);
 
+    Console.Write("What band do you want to evaluate: ");
     string bandName = Console.ReadLine()!;
 
     if (bands.TryGetValue(bandName, out Band? foundedBand))
