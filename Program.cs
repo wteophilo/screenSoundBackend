@@ -35,8 +35,9 @@ void showOptions()
     Console.WriteLine("\nAvailable options:");
     Console.WriteLine("1. Register a band");
     Console.WriteLine("2. Show all bands");
-    Console.WriteLine("3. Evaluate a band");
-    Console.WriteLine("4. Show bands with average evaluation");
+    Console.WriteLine("3. Register an album");
+    Console.WriteLine("4. Evaluate a band");
+    Console.WriteLine("5. Show bands with average evaluation");
     Console.WriteLine("0. Exit");
 }
 
@@ -58,9 +59,12 @@ void handleOption(int option)
             showAllBands();
             break;
         case 3:
-            evaluateBand();
+            registerAlbum();
             break;
         case 4:
+            evaluateBand();
+            break;
+        case 5:
             averageEvaluationByBand();
             break;
         case 0:
@@ -92,6 +96,29 @@ void showAllBands()
     foreach (string band in bands.Keys)
     {
         Console.WriteLine(band);
+    }
+    Thread.Sleep(2000);
+    backToMainMenu();
+}
+
+void registerAlbum()
+{
+    string title = "Register an album";
+    showPageTitle(title);
+    Console.Write("What album do you want do add: ");
+    string albumName = Console.ReadLine()!;
+
+    Console.Write("What band do you want do add album to: ");
+    string bandName = Console.ReadLine()!;
+    if (bands.TryGetValue(bandName, out Band? foundedBand))
+    {
+        Album newAlbum = new(albumName);
+        foundedBand.AddAlbum(newAlbum);
+        Console.WriteLine($"{albumName} was registered successfully!");
+    }
+    else
+    {
+        Console.WriteLine($"Band {bandName} not found.");
     }
     Thread.Sleep(2000);
     backToMainMenu();
