@@ -1,21 +1,37 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using ScreenSoundBackend.Models;
+
 string welcome = "Welcome to Screen Sound";
 string logo = @"
 █▀ █▀▀ █▀█ █▀▀ █▀▀ █▄░█   █▀ █▀█ █░█ █▄░█ █▀▄
 ▄█ █▄▄ █▀▄ ██▄ ██▄ █░▀█   ▄█ █▄█ █▄█ █░▀█ █▄▀";
 
-Dictionary<string, List<int>> bands = new Dictionary<string, List<int>>();
-bands.Add("One Ok Rock", new List<int>());
-bands.Add("System of a Down", new List<int>());
-bands.Add("Linkin Park", new List<int>());
 
-void showWelcomeMessage() {
+Band oneOkRock = new("One Ok Rock");
+oneOkRock.AddEvaluation(10);
+oneOkRock.AddEvaluation(9);
+oneOkRock.AddEvaluation(8);
+
+Band linkinPark = new("Linkin Park");
+linkinPark.AddEvaluation(10);
+linkinPark.AddEvaluation(9);
+linkinPark.AddEvaluation(8);
+
+Dictionary<string, Band> bands = new()
+{
+    { oneOkRock.Name, oneOkRock },
+    { linkinPark.Name, linkinPark }
+};
+
+void showWelcomeMessage()
+{
     Console.WriteLine(logo);
     Console.WriteLine(welcome);
 }
 
-void showOptions() {
+void showOptions()
+{
     Console.WriteLine("\nAvailable options:");
     Console.WriteLine("1. Register a band");
     Console.WriteLine("2. Show all bands");
@@ -24,14 +40,17 @@ void showOptions() {
     Console.WriteLine("0. Exit");
 }
 
-int readOption() {
+int readOption()
+{
     Console.Write("\nChoose an option: ");
     int option = int.Parse(Console.ReadLine()!);
-    return option;   
+    return option;
 }
 
-void handleOption(int option) {    
-    switch(option) {
+void handleOption(int option)
+{
+    switch (option)
+    {
         case 1:
             registerBand();
             break;
@@ -45,7 +64,7 @@ void handleOption(int option) {
             averageEvaluationByBand();
             break;
         case 0:
-            Console.WriteLine("Thanks for using Screen Sound =)" );
+            Console.WriteLine("Thanks for using Screen Sound =)");
             break;
         default:
             Console.WriteLine("Invalid option");
@@ -53,84 +72,95 @@ void handleOption(int option) {
     }
 }
 
-void registerBand() {
+void registerBand()
+{
     string title = "Register a band";
     showPageTitle(title);
     Console.Write("What band do you want do add: ");
     string bandName = Console.ReadLine()!;
-    bands.Add(bandName, new List<int>());
+    Band newBand = new(bandName);
+    bands.Add(bandName, newBand);
     Console.WriteLine($"{bandName} was registered successfully!");
     Thread.Sleep(2000);
     backToMainMenu();
 }
 
-void showAllBands() {
+void showAllBands()
+{
     string title = "Show all bands";
     showPageTitle(title);
-    foreach(string band in bands.Keys) {
+    foreach (string band in bands.Keys)
+    {
         Console.WriteLine(band);
     }
     Thread.Sleep(2000);
     backToMainMenu();
 }
 
-void evaluateBand() {
+void evaluateBand()
+{
     string title = "Evaluate a band";
     showPageTitle(title);
     Console.Write("What band do you want to evaluate: ");
     string bandName = Console.ReadLine()!;
-    
-    if (bands.ContainsKey(bandName)) {
+    if (bands.TryGetValue(bandName, out Band? foundedBand))
+    {
         Console.Write("Enter your evaluation (1-10): ");
         int evaluation = int.Parse(Console.ReadLine()!);
-        bands[bandName].Add(evaluation);
+        foundedBand.AddEvaluation(evaluation);
         Console.WriteLine($"Evaluation added to {bandName}!");
-    } else {
-        Console.WriteLine($"Band {bandName} not found.");
     }
-    Thread.Sleep(2000);
-    backToMainMenu();   
-}
-
-void averageEvaluationByBand() {
-    string title = "Average Evaluation By Band";
-    showPageTitle(title);
-
-    Console.Write("What band do you want to evaluate: ");
-    string bandName = Console.ReadLine()!;
-
-    if (bands.ContainsKey(bandName)) {
-        List<int> evaluation = bands[bandName];
-
-        if (evaluation.Count == 0) {
-            Console.WriteLine("This band has no evaluations.");
-        } else {
-            double average = evaluation.Average();
-            Console.WriteLine($"The average evaluation of {bandName} is {average}.");
-        }
-
-    } else {
+    else
+    {
         Console.WriteLine($"Band {bandName} not found.");
     }
     Thread.Sleep(2000);
     backToMainMenu();
 }
 
-void backToMainMenu() {
+void averageEvaluationByBand()
+{
+    string title = "Average Evaluation By Band";
+    showPageTitle(title);
+
+    string bandName = Console.ReadLine()!;
+
+    if (bands.TryGetValue(bandName, out Band? foundedBand))
+    {
+        if (!foundedBand.HasEvaluations())
+        {
+            Console.WriteLine("This band has no evaluations.");
+            return;
+        }
+
+        Console.WriteLine($"The average evaluation of {bandName} is {foundedBand.Average}.");
+    }
+    else
+    {
+        Console.WriteLine($"Band {bandName} not found.");
+    }
+    Thread.Sleep(2000);
+    backToMainMenu();
+}
+
+void backToMainMenu()
+{
     Console.WriteLine("Press Enter to go back to main menu");
     Console.ReadLine();
     Console.Clear();
     main();
 }
 
-void showPageTitle(string title) {
+void showPageTitle(string title)
+{
     string line = string.Empty.PadLeft(title.Length, '=');
     Console.WriteLine(line);
     Console.WriteLine(title);
     Console.WriteLine(line + "\n");
 }
 
-void main() {
+void main()
+{
     showWelcomeMessage();
     showOptions();
     int option = readOption();
