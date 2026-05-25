@@ -133,9 +133,9 @@ void evaluateBand()
     if (bands.TryGetValue(bandName, out Band? foundedBand))
     {
         Console.Write("Enter your evaluation (1-10): ");
-        int evaluation = int.Parse(Console.ReadLine()!);
-        foundedBand.AddEvaluation(new Evaluate(evaluation));
-        Console.WriteLine($"Evaluation added to {bandName}!");
+        Evaluate evaluation = Evaluate.Parse(Console.ReadLine()!);
+        foundedBand.AddEvaluation(new Evaluate(evaluation.Score));
+        Console.WriteLine($"The evaluation {evaluation.Score} was added to {foundedBand.Name}!");
     }
     else
     {
