@@ -1,12 +1,19 @@
 namespace ScreenSoundBackend.Models;
 
-class Band(string name)
+internal class Band(string name)
 {
     private readonly List<Album> albuns = [];
-    private readonly List<int> evaluations = [];
+    private readonly List<Evaluate> evaluations = [];
 
     public string Name { get; } = name;
-    public double Average => evaluations.Average();
+    public double Average
+    {
+        get
+        {
+            if (evaluations.Count == 0) return 0;
+            return evaluations.Average(e => e.Score);
+        }
+    }
     public List<Album> Albums => albuns;
 
     public void AddAlbum(Album album)
@@ -14,7 +21,7 @@ class Band(string name)
         this.albuns.Add(album);
     }
 
-    public void AddEvaluation(int evaluation)
+    public void AddEvaluation(Evaluate evaluation)
     {
         this.evaluations.Add(evaluation);
     }

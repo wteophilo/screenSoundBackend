@@ -1,6 +1,6 @@
 namespace ScreenSoundBackend.Models;
 
-class Music(string name, Band band)
+internal class Music(string name, Band band)
 {
     public string Name { get; } = name;
     public Band Band { get; } = band;
