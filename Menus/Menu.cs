@@ -8,8 +8,8 @@ internal class Menu
     {
         Console.WriteLine("\nAvailable options:");
         Console.WriteLine("1. Register a band");
-        Console.WriteLine("2. Show all bands");
-        Console.WriteLine("3. Register an album");
+        Console.WriteLine("2. Register an album");
+        Console.WriteLine("3. Show band discography");
         Console.WriteLine("4. Evaluate a band");
         Console.WriteLine("5. Evaluate a album");
         Console.WriteLine("6. Show bands with average evaluation");

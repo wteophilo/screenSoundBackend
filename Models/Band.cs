@@ -33,10 +33,10 @@ internal class Band(string name) : IEvaluable
 
     public void ShowDiscography()
     {
-        Console.WriteLine($"Band {this.Name} discography");
+        Console.WriteLine($"{this.Name} discography:");
         foreach (Album album in this.albuns)
         {
-            Console.WriteLine($"Album: {album.Name} ({album.DurationTotal})");
+            Console.WriteLine($"- {album.Name} -> Average rating: {album.Average}");
         }
     }
 
