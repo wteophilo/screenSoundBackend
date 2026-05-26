@@ -6,6 +6,8 @@ Band oneOkRock = new BandBuilder("One Ok Rock")
     .WithEvaluation(10)
     .WithEvaluation(9)
     .WithEvaluation(8)
+    .WithAlbum("Detox")
+    .WithAlbum("Niche Syndrome")
     .Build();
 
 Band linkinPark = new BandBuilder("Linkin Park")
@@ -25,8 +27,8 @@ Dictionary<int, Menu> menus = new()
 {
     {0, new Exit()},
     {1, new RegisterBand()},
-    {2, new ShowAllBands()},
-    {3, new RegisterAlbum()},
+    {2, new RegisterAlbum()},
+    {3, new ShowBandDiscography()},
     {4, new EvaluateBand()},
     {5, new EvaluateAlbum()},
     {6, new AverageEvaluationByBand()},

@@ -20,10 +20,7 @@ internal class EvaluateAlbum : Menu
                 string text = Console.ReadLine()!;
                 try
                 {
-                    Album foundedAlbum = foundedBand.Albums.First(a => a.Name.Equals(searchedAlbum));
-                    Evaluate evaluation = Evaluate.Parse(text);
-                    foundedAlbum.AddEvaluation(evaluation);
-                    Console.WriteLine($"The evaluation {evaluation.Score} was added to {foundedAlbum.Name}!");
+                    AddEvaluationToAlbum(foundedBand, searchedAlbum, text);
                 }
                 catch (Exception ex) when (ex is FormatException or ArgumentException or OverflowException)
                 {
@@ -39,5 +36,13 @@ internal class EvaluateAlbum : Menu
         {
             Console.WriteLine($"Band {bandName} not found.");
         }
+    }
+
+    private void AddEvaluationToAlbum(Band foundedBand, string searchedAlbum, string text)
+    {
+        Album foundedAlbum = foundedBand.Albums.First(a => a.Name.Equals(searchedAlbum));
+        Evaluate evaluation = Evaluate.Parse(text);
+        foundedAlbum.AddEvaluation(evaluation);
+        Console.WriteLine($"The evaluation {evaluation.Score} was added to {foundedAlbum.Name}!");
     }
 }
