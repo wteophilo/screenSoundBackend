@@ -1,12 +1,26 @@
 namespace ScreenSoundBackend.Models;
 
-internal class Album(string name)
+internal class Album(string name) : IEvaluable
 {
     private readonly List<Music> musics = [];
-
+    private readonly List<Evaluate> evaluations = [];
     public string Name { get; } = name;
     public int DurationTotal => musics.Sum(m => m.Duration);
     public List<Music> Musics => musics;
+
+    public double Average
+    {
+        get
+        {
+            if (evaluations.Count == 0) return 0;
+            return evaluations.Average(e => e.Score);
+        }
+    }
+
+    public void AddEvaluation(Evaluate evaluation)
+    {
+        this.evaluations.Add(evaluation);
+    }
 
     public void AddMusic(Music music)
     {

@@ -1,6 +1,6 @@
 namespace ScreenSoundBackend.Models;
 
-internal class Band(string name)
+internal class Band(string name) : IEvaluable
 {
     private readonly List<Album> albuns = [];
     private readonly List<Evaluate> evaluations = [];

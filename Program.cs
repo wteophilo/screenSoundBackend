@@ -28,7 +28,8 @@ Dictionary<int, Menu> menus = new()
     {2, new ShowAllBands()},
     {3, new RegisterAlbum()},
     {4, new EvaluateBand()},
-    {5, new AverageEvaluationByBand()},
+    {5, new EvaluateAlbum()},
+    {6, new AverageEvaluationByBand()},
 };
 
 void handleOption(int option)
