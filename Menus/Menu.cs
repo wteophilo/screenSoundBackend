@@ -11,7 +11,8 @@ internal class Menu
         Console.WriteLine("2. Show all bands");
         Console.WriteLine("3. Register an album");
         Console.WriteLine("4. Evaluate a band");
-        Console.WriteLine("5. Show bands with average evaluation");
+        Console.WriteLine("5. Evaluate a album");
+        Console.WriteLine("6. Show bands with average evaluation");
         Console.WriteLine("0. Exit");
     }
 
