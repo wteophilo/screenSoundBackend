@@ -1,11 +1,7 @@
-using System.Net.Sockets;
-
 namespace ScreenSoundBackend.Models;
 
 internal class Evaluate
 {
-    private int score;
-
     public int Score { get; }
 
     private const int MIN_VALUE = 0;
