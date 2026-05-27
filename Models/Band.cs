@@ -2,7 +2,7 @@ namespace ScreenSoundBackend.Models;
 
 internal class Band(string name) : IEvaluable
 {
-    private readonly List<Album> albuns = [];
+    private readonly List<Album> albums = [];
     private readonly List<Evaluate> evaluations = [];
 
     public string Name { get; } = name;
@@ -14,11 +14,11 @@ internal class Band(string name) : IEvaluable
             return evaluations.Average(e => e.Score);
         }
     }
-    public List<Album> Albums => albuns;
+    public IEnumerable<Album> Albums => albums;
 
     public void AddAlbum(Album album)
     {
-        this.albuns.Add(album);
+        this.albums.Add(album);
     }
 
     public void AddEvaluation(Evaluate evaluation)
@@ -34,7 +34,7 @@ internal class Band(string name) : IEvaluable
     public void ShowDiscography()
     {
         Console.WriteLine($"{this.Name} discography:");
-        foreach (Album album in this.albuns)
+        foreach (Album album in this.albums)
         {
             Console.WriteLine($"- {album.Name} -> Average rating: {album.Average}");
         }
