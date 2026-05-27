@@ -1,8 +1,21 @@
 {
   "version": 2,
-  "dgSpecHash": "P0IDWvvlawHZa8QOe5Vi1yVVPBykE5YUnkBvAQpNUw9cVn9lbiCD0MRinMy/oaj5QXUpz/c6kEgCdoaSBF87Gw==",
+  "dgSpecHash": "AB8/9TxL/hRiNZqTs40ao4Z8/1A3urykGYZbGKOrbqs+JWW5tysyJRujnS6zrGIkF1JLT3akFSM+v+X18BSbPQ==",
   "success": true,
   "projectFilePath": "/home/wt/Desktop/projects/microsoft/screenSoundBackend/screenSoundBackend.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/wt/.nuget/packages/google.apis/1.69.0/google.apis.1.69.0.nupkg.sha512",
+    "/home/wt/.nuget/packages/google.apis.auth/1.69.0/google.apis.auth.1.69.0.nupkg.sha512",
+    "/home/wt/.nuget/packages/google.apis.core/1.69.0/google.apis.core.1.69.0.nupkg.sha512",
+    "/home/wt/.nuget/packages/google.genai/1.7.0/google.genai.1.7.0.nupkg.sha512",
+    "/home/wt/.nuget/packages/microsoft.extensions.ai.abstractions/10.4.0/microsoft.extensions.ai.abstractions.10.4.0.nupkg.sha512",
+    "/home/wt/.nuget/packages/mimetypes/2.5.2/mimetypes.2.5.2.nupkg.sha512",
+    "/home/wt/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
+    "/home/wt/.nuget/packages/system.codedom/7.0.0/system.codedom.7.0.0.nupkg.sha512",
+    "/home/wt/.nuget/packages/system.io.pipelines/10.0.4/system.io.pipelines.10.0.4.nupkg.sha512",
+    "/home/wt/.nuget/packages/system.management/7.0.2/system.management.7.0.2.nupkg.sha512",
+    "/home/wt/.nuget/packages/system.text.encodings.web/10.0.4/system.text.encodings.web.10.0.4.nupkg.sha512",
+    "/home/wt/.nuget/packages/system.text.json/10.0.4/system.text.json.10.0.4.nupkg.sha512"
+  ],
   "logs": []
 }
