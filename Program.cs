@@ -2,6 +2,8 @@ using ScreenSoundBackend.Menus;
 using ScreenSoundBackend.Models;
 using ScreenSoundBackend.Builders;
 
+DotNetEnv.Env.Load();
+
 Band oneOkRock = new BandBuilder("One Ok Rock")
     .WithEvaluation(10)
     .WithEvaluation(9)

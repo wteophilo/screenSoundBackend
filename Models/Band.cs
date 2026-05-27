@@ -16,6 +16,9 @@ internal class Band(string name) : IEvaluable
     }
     public IEnumerable<Album> Albums => albums;
 
+
+    public string? Summary { get; set; } = string.Empty;
+
     public void AddAlbum(Album album)
     {
         this.albums.Add(album);
@@ -33,6 +36,7 @@ internal class Band(string name) : IEvaluable
 
     public void ShowDiscography()
     {
+        Console.WriteLine($"\nAbout the band {this.Summary}\n");
         Console.WriteLine($"{this.Name} discography:");
         foreach (Album album in this.albums)
         {
