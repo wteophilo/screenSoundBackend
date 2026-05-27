@@ -14,7 +14,7 @@ internal class Band(string name) : IEvaluable
             return evaluations.Average(e => e.Score);
         }
     }
-    public List<Album> Albums => albuns;
+    public IEnumerable<Album> Albums => albuns;
 
     public void AddAlbum(Album album)
     {
