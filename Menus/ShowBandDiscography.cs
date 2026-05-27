@@ -1,4 +1,5 @@
 using ScreenSoundBackend.Models;
+using ScreenSoundBackend.Helpers.AI;
 
 namespace ScreenSoundBackend.Menus;
 
@@ -12,6 +13,10 @@ internal class ShowBandDiscography : Menu
         string bandName = Console.ReadLine()!;
         if (bands.TryGetValue(bandName, out Band? foundedBand))
         {
+            if (String.IsNullOrEmpty(foundedBand.Summary) && DotNetEnv.Env.GetBool("ENABLE_GEMINI"))
+            {
+                foundedBand.Summary = GenerateBandSumary.Call(bandName);
+            }
             foundedBand.ShowDiscography();
         }
         else
