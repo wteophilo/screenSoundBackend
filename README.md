@@ -5,9 +5,11 @@ Screen Sound is a simple C# console application that allows users to manage and 
 ## Features
 
 - **Register a band:** Add new bands to the system.
-- **Show all bands:** Display a list of all currently registered bands.
+- **Register an album:** Add a new album to the system.
+- **Show band discography:** Display a band's discography, including albums and their average ratings.
 - **Evaluate a band:** Add a numeric rating to a specific band.
-- **Average evaluation:** Calculate and display the average rating for a band based on all its evaluations.
+- **Evaluate an album:** Add a numeric rating to a specific album.
+- **Show bands with average evaluation:** Calculate and display the average rating for a band based.
 
 ## Technologies Used
 
@@ -19,6 +21,21 @@ Screen Sound is a simple C# console application that allows users to manage and 
 ### Prerequisites
 
 - [.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0) must be installed on your machine.
+
+### Configuration & Environment Variables
+
+- `GEMINI_API_KEY`: API key for Gemini AI.
+- `ENABLE_GEMINI`: Flag to enable or disable Gemini AI.
+
+To set the environment variables, create a `.env` file in the project root directory and add the following lines:
+
+```bash
+GEMINI_API_KEY=your_api_key_here
+ENABLE_GEMINI=true
+```
+
+> [!IMPORTANT]
+> If `ENABLE_GEMINI` is set to `false` or `GEMINI_API_KEY` is not set, the AI features will be disabled.
 
 ### Running the Application
 
@@ -36,9 +53,11 @@ Upon running the application, you will be greeted with a welcome message and a m
 ```text
 Available options:
 1. Register a band
-2. Show all bands
-3. Evaluate a band
-4. Show bands with average evaluation
+2. Register an album
+3. Show band discography
+4. Evaluate a band
+5. Evaluate a album
+6. Show bands with average evaluation
 0. Exit
 ```
 
