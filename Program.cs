@@ -1,6 +1,7 @@
 using ScreenSoundBackend.Menus;
 using ScreenSoundBackend.Models;
 using ScreenSoundBackend.Builders;
+using ScreenSoundBackend.Database;
 
 DotNetEnv.Env.Load();
 
