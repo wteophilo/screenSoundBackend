@@ -45,6 +45,10 @@
             "Google.GenAI": {
               "target": "Package",
               "version": "[1.7.0, )"
+            },
+            "MySql.Data": {
+              "target": "Package",
+              "version": "[9.7.0, )"
             }
           },
           "imports": [
