@@ -1,0 +1,33 @@
+version: '3.8'
+
+services:
+  database:
+    image: mysql:8.0
+    container_name: screensound-mysql
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=YourStrongPassword123
+      - MYSQL_DATABASE=ScreenSound
+      - MYSQL_USER=ScreenSound
+      - MYSQL_PASSWORD=YourStrongPassword123
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: screensound-app
+    depends_on:
+      - database
+    stdin_open: true # Allows interactive console input (Console.ReadLine)
+    tty: true        # Allocates a pseudo-TTY
+    volumes:
+      - .:/App
+      - /App/obj
+      - /App/bin
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=database;Port=3306;Database=ScreenSound;Uid=ScreenSound;Pwd=YourStrongPassword123;AllowPublicKeyRetrieval=True;
+volumes:
+  mysql_data:

@@ -2,17 +2,19 @@ namespace ScreenSoundBackend.Models;
 
 internal class Evaluate
 {
-    public int Score { get; }
+    public int Id { get; set; }
+    public int Score { get; set; }
 
     private const int MIN_VALUE = 0;
     private const int MAX_VALUE = 10;
+
+    public Evaluate() {}
 
     public Evaluate(int score)
     {
         if (score <= 0) score = 0;
         if (score >= 10) score = 10;
         this.Score = score;
-
     }
 
     public static Evaluate Parse(string text)

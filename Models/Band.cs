@@ -1,47 +1,52 @@
 namespace ScreenSoundBackend.Models;
 
-internal class Band(string name) : IEvaluable
+internal class Band : IEvaluable
 {
-    private readonly List<Album> albums = [];
-    private readonly List<Evaluate> evaluations = [];
+    public int Id { get; set; }
+    public string Name { get; set; } = string.Empty;
+    public string? Summary { get; set; } = string.Empty;
 
-    public string Name { get; } = name;
+    public virtual ICollection<Album> Albums { get; set; } = new List<Album>();
+    public virtual ICollection<Evaluate> Evaluations { get; set; } = new List<Evaluate>();
+
+    public Band() {}
+
+    public Band(string name)
+    {
+        Name = name;
+    }
+
     public double Average
     {
         get
         {
-            if (evaluations.Count == 0) return 0;
-            return evaluations.Average(e => e.Score);
+            if (Evaluations.Count == 0) return 0;
+            return Evaluations.Average(e => e.Score);
         }
     }
-    public IEnumerable<Album> Albums => albums;
-
-
-    public string? Summary { get; set; } = string.Empty;
 
     public void AddAlbum(Album album)
     {
-        this.albums.Add(album);
+        this.Albums.Add(album);
     }
 
     public void AddEvaluation(Evaluate evaluation)
     {
-        this.evaluations.Add(evaluation);
+        this.Evaluations.Add(evaluation);
     }
 
     public bool HasEvaluations()
     {
-        return this.evaluations.Count > 0;
+        return this.Evaluations.Count > 0;
     }
 
     public void ShowDiscography()
     {
         Console.WriteLine($"\nAbout the band {this.Summary}\n");
         Console.WriteLine($"{this.Name} discography:");
-        foreach (Album album in this.albums)
+        foreach (Album album in this.Albums)
         {
             Console.WriteLine($"- {album.Name} -> Average rating: {album.Average}");
         }
     }
-
 }
