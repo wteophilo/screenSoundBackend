@@ -11,6 +11,16 @@
     <PackageReference Include="DotNetEnv" Version="3.2.0" />
     <PackageReference Include="Google.GenAI" Version="1.7.0" />
     <PackageReference Include="MySql.Data" Version="9.7.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.*" />
+     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.*">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.*">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="8.0.*" />
   </ItemGroup>
 
 </Project>
